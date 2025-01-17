@@ -1,5 +1,5 @@
-<template>
-    <div class="flex justify-center items-center h-screen bg-gray-100">
+<template >
+    <div v-if="user" class="flex justify-center items-center h-screen bg-gray-100">
         <div class="w-1/3 p-6 bg-white rounded-lg shadow-lg">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Profile</h2>
             <div class="grid grid-cols-2 gap-4">
@@ -37,8 +37,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import type { User } from '../models/User';
+import userService from '../services/userService';
 
-const user = ref<User>({
+const user = ref<User | null>({
     name: '',
     lastname: '',
     phone: '',
@@ -46,10 +47,7 @@ const user = ref<User>({
 });
 
 onMounted(() => {
-    const loggedUser = sessionStorage.getItem('user');
-    if (loggedUser) {
-        user.value = JSON.parse(loggedUser);
-    }
+    user.value = userService.getUser();
 });
 </script>
 

@@ -43,6 +43,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import type { UserRegister } from '../models/UserRegister';
+import userService from '../services/userService';
 
 const user = ref<UserRegister>({
     name: '',
@@ -54,24 +55,7 @@ const user = ref<UserRegister>({
 
 // TODO: service?
 const registerUser = async () => {
-    const API_URL = "http://127.0.0.1:8000/api";
-    
-    
-    try { 
-        const response = await fetch(`${API_URL}/register`, { 
-            method: 'POST', 
-            headers: { 'Content-Type': 'application/json' }, 
-            body: JSON.stringify(user.value) 
-        }); 
-
-        if (!response.ok) { throw new Error('Error en la petición'); } 
-
-        const data = await response.json(); 
-        console.log('Usuario registrado:', data); } 
-
-        catch (error) { 
-            console.error('Error registrando usuario:', error); 
-        }
+    userService.register(user.value);
 };
 </script>
 

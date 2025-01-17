@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import type { UserLogin } from '../models/UserLogin';
-import type { User } from '../models/User';
+import userService from '../services/userService';
 
 const user = ref<UserLogin>({
     email: '',
@@ -36,31 +36,7 @@ const user = ref<UserLogin>({
 
 // TODO: service?
 const loginUser = async () => {
-    const API_URL = "http://127.0.0.1:8000/api";
-    
-    
-    try { 
-        const response = await fetch(`${API_URL}/login`, { 
-            method: 'POST', 
-            headers: { 'Content-Type': 'application/json' }, 
-            body: JSON.stringify(user.value) 
-        }); 
-
-        if (!response.ok) { throw new Error('Error en la petición'); } 
-
-        const data = await response.json(); 
-        const fetchedUser: User = {
-            name: data.user.name,
-            lastname: data.user.lastname,
-            phone: data.user.phone,
-            email: data.user.email,
-        }
-        sessionStorage.setItem('user', JSON.stringify(fetchedUser));
-        console.log('Logged in:', data); } 
-
-        catch (error) { 
-            console.error('Error ingreso usuario:', error); 
-        }
+    userService.login(user.value);
 };
 </script>
 
