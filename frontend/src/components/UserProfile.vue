@@ -32,6 +32,9 @@
             </div>
         </div>
     </div>
+    <div v-else class="flex justify-center items-center h-screen bg-gray-100">
+        <p class="text-lg font-semibold text-gray-700">Por favor ingrese con su cuenta o registre una cuenta nueva</p>
+    </div>
 </template>
 
 <script setup lang="ts">

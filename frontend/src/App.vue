@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import Register from './components/Register.vue';
+import Header from './layout/Header.vue';
 
 </script>
 
 <template>
-  <Register></Register>
-</template>
+  <Header></Header>
 
-<style scoped>
-</style>
+  <RouterView></RouterView>
+</template>
