@@ -52,8 +52,26 @@ const user = ref<UserRegister>({
     password: ''
 });
 
+// TODO: service?
 const registerUser = async () => {
-    console.log('Registering user:', user.value);
+    const API_URL = "http://127.0.0.1:8000/api";
+    
+    
+    try { 
+        const response = await fetch(`${API_URL}/register`, { 
+            method: 'POST', 
+            headers: { 'Content-Type': 'application/json' }, 
+            body: JSON.stringify(user.value) 
+        }); 
+
+        if (!response.ok) { throw new Error('Error en la petición'); } 
+
+        const data = await response.json(); 
+        console.log('Usuario registrado:', data); } 
+
+        catch (error) { 
+            console.error('Error registrando usuario:', error); 
+        }
 };
 </script>
 
