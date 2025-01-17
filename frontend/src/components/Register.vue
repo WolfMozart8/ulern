@@ -42,8 +42,9 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import type { UserRegister } from '../models/UserRegister';
 
-const user = ref({
+const user = ref<UserRegister>({
     name: '',
     lastname: '',
     phone: '',
