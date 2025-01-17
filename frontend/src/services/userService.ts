@@ -12,9 +12,7 @@ class userService {
                 headers: { 'Content-Type': 'application/json' }, 
                 body: JSON.stringify(user) 
             }); 
-    
-            if (!response.ok) { throw new Error('Error in the request'); } 
-    
+        
             const data = await response.json(); 
             console.log('User registered:', data); 
 

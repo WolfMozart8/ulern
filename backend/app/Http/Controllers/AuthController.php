@@ -12,6 +12,12 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
+        // Verifica si el usuario ya está registrado
+        $existingUser = User::where('email', $request->email)->first();
+        if ($existingUser) {
+            return response()->json(['message' => 'User already registered'], 409);
+        }
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
