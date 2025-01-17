@@ -3,12 +3,11 @@
         <nav class="flex justify-between items-center w-full">
             <router-link to="/" class="text-white text-lg font-bold">Home</router-link>
             <div v-if="!isLogged">
-                <router-link to="/register" class="text-white text-lg font-bold ml-4">Register</router-link>
-                <router-link to="/login" class="text-white text-lg font-bold ml-4">Login</router-link>
+                <router-link to="/register" class="text-white text-lg font-bold ml-4">Registrarse</router-link>
+                <router-link to="/login" class="text-white text-lg font-bold ml-4">Ingresar</router-link>
             </div>
             <div v-else>
-                <router-link to="/profile" class="text-white text-lg font-bold ml-4">Profile</router-link>
-                <button @click="logout" class="text-white text-lg font-bold ml-4">Logout</button>
+                <button @click="logout" class="text-white text-lg font-bold ml-4">Salir</button>
             </div>
         </nav>
     </header>
@@ -25,7 +24,7 @@ onMounted(() => {
 });
 
 const logout = () => {
-    // userService.logout();
+    userService.logout();
     isLogged.value = false;
 };
 </script>

@@ -16,6 +16,10 @@ class userService {
             const data = await response.json(); 
             console.log('User registered:', data); 
 
+            setTimeout(() => {
+                window.location.href = "/login";
+            }, 1000)
+
         } catch (error) { 
             console.error('Error registering user:', error); 
         }
@@ -42,6 +46,10 @@ class userService {
             }
 
             sessionStorage.setItem('user', JSON.stringify(fetchedUser));
+
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 1000)
             console.log('Logged in:', data);
 
         } catch (error) { 
@@ -58,6 +66,10 @@ class userService {
         }
         
         return JSON.parse(loggedUser);
+    }
+    logout() {
+        sessionStorage.removeItem('user');
+        window.location.href = "/";
     }
 }
 
