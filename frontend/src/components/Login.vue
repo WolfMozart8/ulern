@@ -27,6 +27,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import type { UserLogin } from '../models/UserLogin';
+import type { User } from '../models/User';
 
 const user = ref<UserLogin>({
     email: '',
@@ -48,6 +49,13 @@ const loginUser = async () => {
         if (!response.ok) { throw new Error('Error en la petición'); } 
 
         const data = await response.json(); 
+        const fetchedUser: User = {
+            name: data.user.name,
+            lastname: data.user.lastname,
+            phone: data.user.phone,
+            email: data.user.email,
+        }
+        sessionStorage.setItem('user', JSON.stringify(fetchedUser));
         console.log('Logged in:', data); } 
 
         catch (error) { 
