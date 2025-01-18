@@ -1,3 +1,5 @@
+![Imagen de mi proyecto](./img.jpeg)
+
 # Proyecto Laravel + Vue 3 + TypeScript + Tailwind CSS
 
 Este proyecto es una aplicación web que combina un backend desarrollado en Laravel y un frontend construido con Vue 3, TypeScript y Tailwind CSS. La aplicación permite a los usuarios registrarse, iniciar sesión y ver su perfil.
@@ -107,3 +109,4 @@ Lamentablemente debido al tiempo algunas cosas no se lograron finalizar, pero lo
 - Mensaje de errores o de "registro/login" exitoso
 - Uso de Vuex (o Pinia) para gestionar de mejor manera estados globales (por ejemplo para saber si el usuario está "logueado")
 - Usar tokens para un manejo de datos mas seguro
+- Mejorar diseño y reponsive de la aplicación
