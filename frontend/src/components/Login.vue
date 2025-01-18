@@ -1,6 +1,7 @@
 <template>
-    <div class="flex justify-center items-center h-screen">
-        <form class="w-1/3 p-6 bg-white rounded-lg shadow-lg" @submit.prevent="loginUser">
+    <div  class="flex justify-center items-center h-screen relative">
+        <span v-if="loading" class="spinner w-full h-auto absolute"></span>
+        <form :class="loading ? 'opacity-50' : ''" class="w-1/3 p-6 bg-white rounded-lg shadow-lg" @submit.prevent="loginUser">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Ingresar</h2>
 
             <div class="mb-6">
@@ -34,10 +35,14 @@ const user = ref<UserLogin>({
     password: ''
 });
 
-// TODO: service?
+const loading = ref<boolean>(false);
+
 const loginUser = async () => {
-    userService.login(user.value);
+    loading.value = true;
+    await userService.login(user.value);
+    loading.value = false;
 };
+
 </script>
 
 <style scoped></style>

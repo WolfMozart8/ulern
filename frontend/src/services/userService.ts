@@ -12,16 +12,21 @@ class userService {
                 headers: { 'Content-Type': 'application/json' }, 
                 body: JSON.stringify(user) 
             }); 
-        
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Error al registrar');
+            }
+
             const data = await response.json(); 
-            console.log('User registered:', data); 
+            console.log('Usuario registrado:', data); 
 
             setTimeout(() => {
                 window.location.href = "/login";
-            }, 1000)
+            }, 1000);
 
         } catch (error) { 
-            console.error('Error registering user:', error); 
+            console.error('Error al registrar usuario:', error); 
         }
     }
 

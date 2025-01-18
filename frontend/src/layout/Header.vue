@@ -1,5 +1,5 @@
 <template>
-    <header class="bg-gray-800 py-4 px-8">
+    <header class="bg-gray-800 py-4 px-8 relative">
         <nav class="flex justify-between items-center w-full">
             <router-link to="/" class="text-white text-lg font-bold">Home</router-link>
             <div v-if="!isLogged">

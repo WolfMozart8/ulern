@@ -1,6 +1,7 @@
 <template>
     <div class="flex justify-center items-center h-screen">
-        <form class="w-1/3 p-6 bg-white rounded-lg shadow-lg" @submit.prevent="registerUser">
+        <span v-if="loading" class="spinner w-full h-auto absolute"></span>
+        <form :class="loading ? 'opacity-50' : ''" class="w-1/3 p-6 bg-white rounded-lg shadow-lg" @submit.prevent="registerUser">
             <h2 class="text-3xl font-bold text-gray-800 mb-6">Registro</h2>
             <div class="mb-6">
                 <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
@@ -53,9 +54,12 @@ const user = ref<UserRegister>({
     password: ''
 });
 
-// TODO: service?
+let loading = ref<boolean>(false);
+
 const registerUser = async () => {
-    userService.register(user.value);
+    loading.value = true;
+    await userService.register(user.value);
+    loading.value = false;
 };
 </script>
 
